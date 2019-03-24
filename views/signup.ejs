@@ -1,0 +1,22 @@
+<% include ./partials/header %>
+<div class="container">
+    <h1 style="text-align: center">Signup Page!!</h1>
+    <div style="margin:auto; width:30%">
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Example : abc@gmail.com">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Signup</button>
+            </div>
+        </form>
+        <a href="/login">Already have an account? Login</a>
+    </div>
+</div>
+<% include ./partials/footer %>

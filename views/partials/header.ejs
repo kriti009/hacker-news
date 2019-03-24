@@ -10,7 +10,18 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./css/main.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+        <div class="container">
+            <% if(error && error.length > 0){ %>    
+                <div class="alert alert-danger">
+                    <%= error %>
+                </div>
+            <% } %>
+            <% if(success && success.length>0){ %>
+                <div class="alert alert-success">
+                    <%= success %>
+                </div>
+            <% } %>
+        </div>
     </head>
     <body>
             
