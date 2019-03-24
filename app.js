@@ -44,23 +44,24 @@ app.use(require("express-session")({
 
 
 app.use("/", authRoutes);
-var url = 'http://hn.algolia.com/api/v1/items/'
+
 app.get('/', function(req, res){
-    var data = [];
-    var i=1;
-    for(i=1 ; i<=2 ; ++i){
-        request(url+i, function(err,  response, body){
-            if(err)
-                console.log(err);
-            else{
-                if(response.statusCode == 200){
-                    data.push(JSON.parse(body));
-                }     
-            }
-        }) 
+    var data ;
+    var url = 'http://hn.algolia.com/api/v1/search?query=';
+    request(url, function(err,  response, body){
+        if(err)
+            console.log(err);
+        else{
+            if(response.statusCode == 200){
+                data = JSON.parse(body);
+                // console.log(data.hits);
+                res.render('index', {data: data});
+            }     
+        }
+    }) 
         // console.log(data);
-    }
-    res.render('index', {data: data});
+    
+    
 });
 
 

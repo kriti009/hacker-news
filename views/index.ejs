@@ -68,10 +68,12 @@
         </div>
     </div>
     <div>
-        <% data.forEach(function(topic){ %>
-            <div>
-                <p><%= topic.id%>  <%=topic.title %></p>
-            </div>
+        <% data.hits.forEach(function(topic){ %>
+            <a href='<%=topic.url %>'>
+                <div>
+                    <p> <%=topic.title %></p>
+                </div>
+            </a>
         <% }); %>
     </div>
 </div>  
