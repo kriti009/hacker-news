@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     passport = require('passport');
 var localStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
+var timediff = require('timediff');
 
 
 // requiring routes
@@ -39,6 +40,8 @@ app.use(require("express-session")({
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
+    var  date = new Date();
+    res.locals.today = date;
     next();
  })
 
@@ -46,8 +49,11 @@ app.use(require("express-session")({
 app.use("/", authRoutes);
 
 app.get('/', function(req, res){
+    var query = req.query.query || "";
+    var tag = req.query.tag || "story";
+    var page = req.query.page || "0";
     var data ;
-    var url = 'http://hn.algolia.com/api/v1/search?query=';
+    var url = 'https://hn.algolia.com/api/v1/search?query='+query+'&tags='+tag+'&numericFilters=&page='+page;
     request(url, function(err,  response, body){
         if(err)
             console.log(err);
@@ -60,8 +66,20 @@ app.get('/', function(req, res){
         }
     }) 
         // console.log(data);
-    
-    
+});
+app.get('/comments/:id', function(req, res){
+    var url = 'http://hn.algolia.com/api/v1/items/'+req.params.id;
+    request(url, function(err,  response, body){
+        if(err)
+            console.log(err);
+        else{
+            if(response.statusCode == 200){
+                var data = JSON.parse(body);
+                // console.log(data.hits);
+                res.render('comments', {data: data});
+            }     
+        }
+    }) 
 });
 
 
@@ -69,6 +87,7 @@ app.get('/', function(req, res){
 app.get("*", function(req, res){
 	res.send("PAGE NOT FOUND!!");
 });
+
 app.listen(3000, function(){
     console.log("Server Connected!!");
 });
