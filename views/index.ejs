@@ -1,74 +1,61 @@
 <% include ./partials/header.ejs %>
 <div class='container'>
     
-    <div class="fixed">
-        
-        <div>
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <% if(!currentUser){ %>
-                        <a class="navbar-brand" href="/">Search hackerNews</a>
-                    <% }else{ %>
-                        <a class="navbar-brand" href="/profile"><%= currentUser.username %></a>
-                    <% }; %>
-                    
-                </div>
-            
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form navbar-left" action="/" mehtod='GET'>     
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg form-control-borderless" name="query" type="search" placeholder="Search topics or keywords">
+        <div class="fixed">
+            <form class="navbar-form " action="/" mehtod='GET'>   
+                <div class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <% if(!currentUser){ %>
+                                <a class="navbar-brand" href="/">Search hackerNews</a>
+                            <% }else{ %>
+                                <a class="navbar-brand" href="/profile"><%= currentUser.username %></a>
+                            <% }; %>
                         </div>
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </form>
-                    <% if(!currentUser){ %>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/login">login</a></li>
-                            <li><a href="/signup">signup</a></li>
-                        </ul>
-                    <% } else { %>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/logout">logout</a></li>
-                        </ul>
-                    <% }; %>
-                    
-                </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
-        </div>
-        <div>
-            <form action="/" mehtod='GET'>
-                    <label for="search">Search</label>
-                    <select id='search' name='tag'>
-                        <option value="all">All</option>
-                        <option value="story" selected>Stories</option>
-                        <option value="comment">Comments</option>
-                    </select> 
-                    <!-- <input type="radio" name="gender" id="male" value="male"><br> -->
-                    <label for="by">By</label>
-                    <select id='by'>
-                        <option value="date">Date</option>
-                        <option value="popularity" selected>Popularity</option>
-                    </select>
-                    <label for="for">For</label>
-                    <select id='for'>
-                        <option value="1" selected>All Time</option>
-                        <option value="2">Last 24hrs</option>
-                        <option value="3">Last Week</option>
-                    </select>
-                    <button type="submit" class="btn btn-default"><i class="fa fa-arrow-right"></i></button>
+                        <% if(!currentUser){ %>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/login">login</a></li>
+                                <li><a href="/signup">signup</a></li>
+                            </ul>
+                        <% } else { %>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/logout">logout</a></li>
+                            </ul>
+                        <% }; %>
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-lg form-control-borderless" name="query" type="search" placeholder="Search topics or keywords">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        
+                    </div><!-- /.container-fluid -->
+                </div>
+        
+                <div>
+                    <!-- <form action="/" mehtod='GET'> -->
+                        <label for="search">Search</label>
+                        <select id='search' name='tag'>
+                            <option value="all">All</option>
+                            <option value="story">Stories</option>
+                            <option value="comment">Comments</option>
+                        </select> 
+                        <!-- <input type="radio" name="gender" id="male" value="male"><br> -->
+                        <label for="by">By</label>
+                        <select id='by'>
+                            <option value="date">Date</option>
+                            <option value="popularity" >Popularity</option>
+                        </select>
+                        <label for="for">For</label>
+                        <select id='for'>
+                            <option value="1" selected>All Time</option>
+                            <option value="2">Last 24hrs</option>
+                            <option value="3">Last Week</option>
+                        </select>
+                        <!-- <button type="submit" class="btn btn-default"><i class="fa fa-arrow-right"></i></button> -->
+                    <!-- </form> -->
+                </div>
             </form>
         </div>
-    </div>
     
     <div>
         <% data.hits.forEach(function(topic){ %>
@@ -83,6 +70,26 @@
             <% } %>    
         <% }); %>
     </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            </li>
+        </ul>
+    </nav>
+    
 </div>  
 
 <% include ./partials/footer.ejs %>
