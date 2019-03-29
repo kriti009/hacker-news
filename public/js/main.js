@@ -8,6 +8,7 @@ $.urlParam = function(name){
 };
 
 console.log($.urlParam('query') );
+console.log($.urlParam('tag'));
 // $('#butto').click(function(){
 //     console.log("Clickkedd!!");
 // })
@@ -27,8 +28,14 @@ var page = $.urlParam('page');
 console.log(page);
 var current_page = '#'+ (parseInt(page) +1).toString();
 console.log(current_page);
-
 $(current_page).addClass('selected');
+
+
+var current_tag = $.urlParam('tag');
+console.log(current_tag);
+// $("#search option[value =' ']").s
+$('#search').val(current_tag); // Select the option with a value of '1'
+$('#search').trigger('change');   
 
 // $("a").on("click", function () {
 //     $("a.active").removeClass("active");
