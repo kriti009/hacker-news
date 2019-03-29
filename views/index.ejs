@@ -1,49 +1,49 @@
 <% include ./partials/header.ejs %>
 <div class='container'>
-    
+        <form class="navbar-form " action="/" mehtod='GET' id='form1'>
         <div class="fixed">
-            <form class="navbar-form " action="/" mehtod='GET'>   
+               
                 <div class="navbar navbar-default">
-                    <div class="container-fluid">
+                    <div class="container-fluid header">
                         <div class="navbar-header">
                             <% if(!currentUser){ %>
-                                <a class="navbar-brand" href="/">Search hackerNews</a>
+                                <a class="navbar-brand" href="/">Search HackerNews</a>
                             <% }else{ %>
                                 <a class="navbar-brand" href="/profile"><%= currentUser.username %></a>
                             <% }; %>
                         </div>
                         <% if(!currentUser){ %>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/login">login</a></li>
-                                <li><a href="/signup">signup</a></li>
+                                <li><a href="/login" class='user'>login</a></li>
+                                <li><a href="/signup" class='user'>signup</a></li>
                             </ul>
                         <% } else { %>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/logout">logout</a></li>
+                                <li><a href="/logout" class='user'>logout</a></li>
                             </ul>
                         <% }; %>
-                            
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-lg form-control-borderless" name="query" type="search" placeholder="Search topics or keywords">
+                            <div class='searchi'>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg form-control-borderless" value='<%=query %>' id='query' name="query" type="search" placeholder="Search topics or keywords">
+                                </div>
+                                <button type="submit" class="btn btn-default search-btn"><i class="fa fa-search" style="color: rgb(255, 116, 43)"></i></button>
                             </div>
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                        
                     </div><!-- /.container-fluid -->
                 </div>
         
-                <div>
+                <div class='filter'>
                     <!-- <form action="/" mehtod='GET'> -->
                         <label for="search">Search</label>
                         <select id='search' name='tag'>
-                            <option value="all">All</option>
-                            <option value="story">Stories</option>
-                            <option value="comment">Comments</option>
+                            <option value="all" id='all'>All</option>
+                            <option value="story" id='story' selected>Stories</option>
+                            <option value="comment" id='comment'>Comments</option>
                         </select> 
                         <!-- <input type="radio" name="gender" id="male" value="male"><br> -->
                         <label for="by">By</label>
-                        <select id='by'>
+                        <select id='by' >
                             <option value="date">Date</option>
-                            <option value="popularity" >Popularity</option>
+                            <option value="popularity" selected>Popularity</option>
                         </select>
                         <label for="for">For</label>
                         <select id='for'>
@@ -54,42 +54,71 @@
                         <!-- <button type="submit" class="btn btn-default"><i class="fa fa-arrow-right"></i></button> -->
                     <!-- </form> -->
                 </div>
-            </form>
+            
         </div>
     
-    <div>
+    <div class='content'>
         <% data.hits.forEach(function(topic){ %>
             <% if(topic.title && topic.url){ %>
-                <div style='border: 2px solid black'>
-                    <a href="<%= topic.url %>"> <%=topic.title %></a><br>
-                    <a><%= topic.points %> points </a>
-                    | <a><%= topic.author %> </a>
-                    | <a href='/comments/<%=topic.objectID %>'><%=topic.num_comments%> Comments </a>
-                    | <a href="<%= topic.url %>">( <%= topic.url%> )</a>
+                <div class=each-content>
+                    <a href="<%= topic.url %>"> <%=topic.title %></a>
+                    <div class='small'>
+                        <a><%= topic.points %> points </a>
+                        | <a><%= topic.author %> </a>
+                        | <a href='/comments/<%=topic.objectID %>'><%=topic.num_comments%> Comments </a>
+                        | <a href="<%= topic.url %>">( <%= topic.url%> )</a>
+                    </div>
+            
                 </div>
+            <% } else if (  topic.comment_text){ %>
+                <div class='each-content'>
+                    <a href="<%= topic.story_url %>" style='font-size: 14px'> <%=topic.story_title %></a><br>
+                    <!-- <a><%= topic.points %> points </a> -->
+                    <div class="small">
+                        | <a style='font-size: 10px'><%= topic.author %> </a>
+                        | <a href='/comments/<%=topic.objectID %>' style='font-size: 10px'> Comments </a><br>
+                    </div>
+                    
+                    <div style="padding-left: 20px" class="comm ent-text">
+                        <%- topic.comment_text %>
+                    </div>
+                        <!-- | <a href="<%= topic.url %>">( <%= topic.url%> )</a> -->
+                </div>  
             <% } %>    
         <% }); %>
+        <div class="paginate-container codesearch-pagination-container" >
+            <div class="d-flex d-md-inline-block pagination" data-pjax="true">
+                <% if(page>0){ %>
+                    <% page = page-1; %>
+                    <a href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=<%= page %>"><span class='pagi'>&laquo;</span></a> 
+                <% }; %>
+                
+                <!-- <span class="previous_page disabled">Previous</span> -->
+                <a  href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=0"><span id='1' class='pagi'>1</span></a> 
+                <a  href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=1"><span id='2' class='pagi'>2</span></a> 
+                <a  href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=2"><span id='3' class='pagi'>3</span></a> 
+                <a  href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=3"><span id='4' class='pagi'>4</span></a> 
+                <a  href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=4"><span id='5' class='pagi'>5</span></a>  
+                <span class="gap">…</span>
+                <% if(page >=4 && page < 47){ %>
+                    <% page = page +1; %>
+                    <a  href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=<%=page%>"><span id='<%= page+1 %>' class='pagi'><%= page+1 %></span></a>  
+                <%}; %>
+                <span class="gap">…</span> 
+                <a  href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=48"><span id='49' class='pagi'>49</span></a>  
+                <a href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=49"><span id='50' class='pagi'>50</span></a>
+                <% if(page< 48){ %>
+                    <% page = page +1; %>
+                    <a id='next' href="/?query=<%= query %>&amp;tag=<%= tag %>&amp;page=<%= page %>"><span class='pagi'>&raquo;</span></a> 
+                <% }; %>
+                    
+                <!-- <a class="next_page" rel="next" href="/search?p=2&amp;q=ajax&amp;type=Repositories">Next</a> -->
+            </div>
+        </div>
     </div>
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li>
-                <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-            </li>
-        </ul>
-    </nav>
+
     
+</form> 
 </div>  
 
 <% include ./partials/footer.ejs %>

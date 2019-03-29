@@ -61,7 +61,7 @@ app.get('/', function(req, res){
             if(response.statusCode == 200){
                 data = JSON.parse(body);
                 // console.log(data.hits);
-                res.render('index', {data: data});
+                res.render('index', {data: data, query: query, tag: tag, page:page});
             }     
         }
     }) 

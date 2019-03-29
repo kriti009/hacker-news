@@ -1,10 +1,201 @@
+.body{
+    margin: 0 auto;
+    padding: 0;
+}
 .form-control-borderless {
     border: none;
     width: 500px
 }
 
+.content{
+    box-sizing: border-box;
+color: rgb(0, 0, 0);
+display: block;
+font-family: Verdana, Geneva, sans-serif;
+font-size: 13px;
+line-height: 19.5px;
+position: relative;
+background-color: rgb(245, 245, 245);
+
+}
+.each-content{
+    padding-left: 20px;
+    padding-top: 7px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgb(220, 220, 220)
+}
+.comment-text{
+    font-size: 11px
+}
+.content a{
+    background-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17.5px;
+    outline-color: rgb(0, 0, 0);
+    outline-style: none;
+    outline-width: 0px;
+    text-decoration: none;
+    text-decoration-color: rgb(0, 0, 0);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-rendering: optimizelegibility;
+    transition-delay: 0s;
+    transition-duration: 0.1s;
+    transition-property: color;
+    transition-timing-function: linear;
+}
+.content .small a{
+    font-size: 10px;
+}
+.header{
+    background-color: #FF742B;
+    color: white;
+    display: block;
+font-family: Verdana, Geneva, sans-serif;
+font-size: 16px;
+height: 60px;
+line-height: 24px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+padding-top: 5px;
+/* position: fixed; */
+width: 100%;
+z-index: 15;
+margin-top:0px;
+margin-bottom:0
+}
+div.searchi{
+
+    padding-top: 6px;
+}
+.searchi .form-group{
+    background-color: rgb(255, 255, 255);
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    width: 60%
+}
+.search .search-btn{
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 116, 43);
+}
+.container-fluid .navbar-brand, .container-fluid .navbar-brand:hover, ul.nav.navbar-nav.navbar-right li a.user{
+    color: white;
+    font-size: 18px;
+    padding-top: 10px;
+    font-family: Verdana, Geneva, sans-serif ;
+    line-height: 18px;
+}
+ul.nav.navbar-nav.navbar-right li a.user{
+    font-size: 15px;
+    padding-top: 13px;
+    padding
+}
+div.filter{
+background-color: rgb(253, 253, 253);
+border-bottom-color: rgb(0, 0, 0);
+border-bottom-style: none;
+border-bottom-width: 0px;
+border-image-outset: 0;
+border-image-repeat: stretch;
+border-image-slice: 100%;
+border-image-source: none;
+border-image-width: 1;
+border-left-color: rgb(0, 0, 0);
+border-left-style: none;
+border-left-width: 0px;
+border-right-color: rgb(0, 0, 0);
+border-right-style: none;
+border-right-width: 0px;
+border-top-color: rgb(0, 0, 0);
+border-top-style: none;
+border-top-width: 0px;
+box-sizing: border-box;
+color: rgb(0, 0, 0);
+display: block;
+font-family: Verdana, Geneva, sans-serif;
+font-size: 12px;
+height: 42px;
+margin: 0 auto;
+line-height: 42px;
+padding-bottom: 0px;
+padding-left: 10px;
+padding-right: 10px;
+padding-top: 0px;
+/* position: relative; */
+/* top: 60px; */
+white-space: nowrap;
+width: 100%;
+z-index: 5;
+
+}
 .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
     border: none;
     outline: none;
     box-shadow: none;
+}
+/* a.selected{
+    border: 2px solid blue;
+}
+a.active{
+    border: 2px solid red;
+} */
+.codesearch-pagination-container{
+    text-align: center;
+}
+.gap{
+    color: rgb(175, 175, 175);
+}
+.pagi{
+    border: 2px solid;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 3px;
+    padding-bottom: 5px;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-top: 5px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-optical-sizing: auto;
+    font-size: 12px;
+    font-size-adjust: none;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant: normal;
+    font-variant-alternates: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-variant-position: normal;
+    font-variation-settings: normal;
+    font-weight: 400;
+    line-height: 12px;
+    list-style-type: none;
+    text-align: center;
+    text-decoration: none;
+    text-decoration-color: rgb(255, 116, 43);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-transform: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-radius: 3px;
+    border-width: 1.26px;
+    border-color: rgb(175, 175, 175);
+    color: rgb(175, 175, 175);
+
+}
+.selected{
+    border-radius: 3px;
+    border-width: 1.26px;
+    border-color: #FF742B;
 }
