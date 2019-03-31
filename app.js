@@ -67,6 +67,7 @@ app.get('/', function(req, res){
     var tag = req.query.type || "story";
     var page = req.query.page || "0";
     var by = req.query.by || 'popularity';  
+    var dateRange = req.query.dateRange || 'all';
     var data ;
     if(by== 'date'){
         var url = 'https://hn.algolia.com/api/v1/search_by_date?query='+query+'&tags='+tag+'&numericFilters=&page='+page;    
