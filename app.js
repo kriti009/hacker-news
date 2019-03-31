@@ -9,6 +9,20 @@ var localStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var timediff = require('timediff');
 
+var time_format = {
+    units: {
+      years:true,
+      months: true,
+      weeks: true,
+      days: true,
+      hours: true,
+      minutes: true,
+      seconds: true,
+      milliseconds: true
+    },
+    returnZeros: false,
+    callback: null
+  }
 
 // requiring routes
 
@@ -50,10 +64,15 @@ app.use("/", authRoutes);
 
 app.get('/', function(req, res){
     var query = req.query.query || "";
-    var tag = req.query.tag || "story";
+    var tag = req.query.type || "story";
     var page = req.query.page || "0";
+    var by = req.query.by || 'popularity';  
     var data ;
-    var url = 'https://hn.algolia.com/api/v1/search?query='+query+'&tags='+tag+'&numericFilters=&page='+page;
+    if(by== 'date'){
+        var url = 'https://hn.algolia.com/api/v1/search_by_date?query='+query+'&tags='+tag+'&numericFilters=&page='+page;    
+    }else{
+        var url = 'https://hn.algolia.com/api/v1/search?query='+query+'&tags='+tag+'&numericFilters=&page='+page;
+    }
     request(url, function(err,  response, body){
         if(err)
             console.log(err);
@@ -61,7 +80,15 @@ app.get('/', function(req, res){
             if(response.statusCode == 200){
                 data = JSON.parse(body);
                 // console.log(data.hits);
-                res.render('index', {data: data, query: query, tag: tag, page:page});
+                res.render('index', {
+                    data: data, 
+                    query: query, 
+                    tag: tag, 
+                    page:page, 
+                    by:by, 
+                    timediff: timediff,
+                    time_format : time_format
+                 });
             }     
         }
     }) 

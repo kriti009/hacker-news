@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "algoliasearch": "^3.32.1",
     "assert": "^1.4.1",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
