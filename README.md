@@ -20,7 +20,7 @@
     <li>[Mongoose] - Object modelling and handling </li>
     <li>[Passport-local] - Passport strategy for authenticating with a username and password </li>
 </ul>
-<h2>Installation</h2>
+<h2>Getting Started - Installation</h2>
     ( Install the dependencies and start the server. )
     
 <ul style="list-style: none;">
