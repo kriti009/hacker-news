@@ -3,8 +3,8 @@
 <p>Built with Node.js, Express and the official HackerNews API, with routing, comments, comment folding, user history & realtime updates.</p>
 <h1>Getting Started</h1>
 <ol>
-    <li>git clone https://github.com/kriti009/hacker-news.git </li>
-    <li>npm start</li>
+    <li style="background-color: rgb(215, 215, 215)">git clone https://github.com/kriti009/hacker-news.git </li>
+    <li style="background-color: rgb(215, 215, 215)">npm start</li>
 </ol>
 <div style = "background : rgb(229, 229, 229)">
     Technologies Used:
