@@ -8,6 +8,10 @@
     <li >git clone https://github.com/kriti009/hacker-news.git </li>
     <li >npm start</li>
 </ul>
+<h1>Using HN Search Api</h1>
+
+![hacker-news](https://github.com/kriti009/hacker-news/blob/master/ss/Screenshot%20(15).png "ss")
+
 <h1>Screenshot</h1>
 
 ![hacker-news](https://github.com/kriti009/hacker-news/blob/master/ss/Screenshot%20(15).png "ss")
