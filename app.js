@@ -33,8 +33,12 @@ var History = require('./models/history');
 var authRoutes = require('./routes/auth.js');
 // var middleware =/ require('./middleware');
 
-mongoose.connect("mongodb://localhost:27017/hacker_news",{ useNewUrlParser: true});
-
+// mongoose.connect("mongodb://localhost:27017/hacker_news",{ useNewUrlParser: true});
+var mongoDB = 'mongodb://kriti09:rachana123@ds349175.mlab.com:49175/hacker-news';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
