@@ -1,5 +1,5 @@
 <h1>HackerNews Clone</h1>
-<a href="https://hacker-new-adda.herokuapp.com">Live demo</a>
+<a href="https://hacker-new-adda.herokuapp.com">Live demo</a><br>
 <p>Built with Node.js, Express and the official HackerNews API, with routing, comments, comment folding, user history & realtime updates.</p>
 <div style = "background : rgb(229, 229, 229)">
     Technologies Used:
