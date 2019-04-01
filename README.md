@@ -8,9 +8,21 @@
 
 <h2>Features</h2>
 <ul>
-    <li>Email -  One registered user email cannot be u xd in registering
+    <li>Email -  One registered user email cannot be used again in registering</li>
+    <li>History Page - A seperate history page for each User</li>
+    <li>User Session
 </ul>
-<h1>Getting Started</h1>
+
+<h2>Technologies </h2>
+<ul>
+    <li>[Node.js] - Server Language</li>
+    <li>[Request.js] - To make http calls </li>
+    <li>[Mongoose] - Object modelling and handling </li>
+    <li>[Passport-local] - Passport strategy for authenticating with a username and password </li>
+</ul>
+<h2>Installation</h2>
+    ( Install the dependencies and start the server. )
+    
 <ul style="list-style: none;">
     <li>npm install </li>
     <li>git init </li>
