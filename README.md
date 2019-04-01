@@ -2,11 +2,20 @@
 <a href="https://hacker-new-adda.herokuapp.com">Live demo</a><br>
 <p>Built with Node.js, Express and the official HackerNews API, with routing, comments, comment folding, user history & realtime updates.</p>
 <h1>Getting Started</h1>
-<ul style="background-color: rgb(215, 215, 215)">
+<ul style="list-style: none;">
     <li>npm install </li>
+    <li>git init </li>
     <li >git clone https://github.com/kriti009/hacker-news.git </li>
     <li >npm start</li>
 </ul>
+<h1>Screenshot</h1>
+
+![hacker-news](https://github.com/kriti009/hacker-news/blob/master/ss/Screenshot%20(15).png "ss")
+
+<h6>History Page </h6>
+
+![hacker-news](https://github.com/kriti009/hacker-news/blob/master/ss/Screenshot%20(17).png "ss")
+
 <div style = "background : rgb(229, 229, 229)">
     Technologies Used:
 
@@ -24,16 +33,7 @@
   - facebook authentication
   - CSS Cleanup (Better Responsive Design)
  </div>
-<h3>Landing Page</h3>
- 
- ![yelp_camp1](https://github.com/kriti009/Yelp_Camp/blob/master/ss/yelp_camp1.png "ss")
- 
-<br>
-<h3>Index Page</h3>
 
-![yelp_camp1](https://github.com/kriti009/Yelp_Camp/blob/master/ss/yelp_camp2.png "ss")
-<br>
-<br>
 <div>
     <i>Modeled after 'Yelp Camp Project' via Udemy: The Web Developer Bootcamp</i>
 </div>
