@@ -1,6 +1,7 @@
 var express = require("express");
 var User = require("../models/user");
 var passport = require("passport");
+// var middleware = require("../middleware");
 var router = express.Router();
 
 // router.get("/", function(req, res){
@@ -42,5 +43,14 @@ router.get("/logout", function(req, res){
    req.logout();
    res.redirect("/");
 });
+router.isLoggedIn = function(req, res, next){
+   if(req.isAuthenticated()){
+      return next();
+   }else{
+      req.flash("error", "You need to be logged in to do that")
+      res.redirect("/login");
+   };
+}; 
+
 
 module.exports = router ;

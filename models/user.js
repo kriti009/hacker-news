@@ -5,7 +5,26 @@ var assert = require('assert');
 var userSchema = new mongoose.Schema({
    username: {type : String},
    password: {type : String},
-   email: {type : String , unique: true}
+   email: {type : String , unique: true},
+   history: [
+    {
+      query: String,
+      tag: {
+          type: String,
+          enum: ['story', 'comment'], 
+       },
+       by: {
+           type: String,
+           enum: ['date', 'popularity'], 
+       },
+       dateRange: {
+           type: String,
+           enum: ['all', 'last24h', 'pastWeek', 'pastMonth', 'pastYear'], 
+       },
+       time : { type : Date, default: Date.now }
+   }
+]
+
 });
 userSchema.plugin(passportLocalMongoose);
 var User = mongoose.model("User", userSchema);

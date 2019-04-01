@@ -20,6 +20,7 @@
                             </ul>
                         <% } else { %>
                             <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/history" class='user'><i class='fa fa-history'></i></a></li>
                                 <li><a href="/logout" class='user'>logout</a></li>
                             </ul>
                         <% }; %>
@@ -48,11 +49,11 @@
                         </select>
                         <label for="for">For</label>
                         <select id='for' name='dateRange'>
-                            <option value="all" selected>All Time</option>
-                            <option value="last24h">Last 24hrs</option>
-                            <option value="pastWeek">Past Week</option>
-                            <option value="pastMonth">Past Month</option>
-                            <option value="pastYear">Past Year</option>
+                            <option id='f1' value="all" selected>All Time</option>
+                            <option id='f2' value="last24h">Last 24hrs</option>
+                            <option id='f3' value="pastWeek">Past Week</option>
+                            <option id='f4' value="pastMonth">Past Month</option>
+                            <option id='f5' value="pastYear">Past Year</option>
 
                         </select>
                         <!-- <button type="submit" class="btn btn-default"><i class="fa fa-arrow-right"></i></button> -->
@@ -119,22 +120,22 @@
                 <% }; %>
                 
                 <!-- <span class="previous_page disabled">Previous</span> -->
-                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=0"><span id='1' class='pagi'>1</span></a> 
-                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=1"><span id='2' class='pagi'>2</span></a> 
-                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=2"><span id='3' class='pagi'>3</span></a> 
-                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=3"><span id='4' class='pagi'>4</span></a> 
-                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=4"><span id='5' class='pagi'>5</span></a>  
+                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=0"><span id='1' class='pagi'>1</span></a> 
+                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=1"><span id='2' class='pagi'>2</span></a> 
+                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=2"><span id='3' class='pagi'>3</span></a> 
+                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=3"><span id='4' class='pagi'>4</span></a> 
+                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=4"><span id='5' class='pagi'>5</span></a>  
                 <span class="gap">…</span>
                 <% if(page >=4 && page < 47){ %>
                     <% page = page +1; %>
-                    <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=<%=page%>"><span id='<%= page+1 %>' class='pagi'><%= page+1 %></span></a>  
+                    <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=<%=page%>"><span id='<%= page+1 %>' class='pagi'><%= page+1 %></span></a>  
                 <%}; %>
                 <span class="gap">…</span> 
-                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=48"><span id='49' class='pagi'>49</span></a>  
-                <a href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=49"><span id='50' class='pagi'>50</span></a>
+                <a  href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=48"><span id='49' class='pagi'>49</span></a>  
+                <a href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=49"><span id='50' class='pagi'>50</span></a>
                 <% if(page< 48){ %>
                     <% page = page +1; %>
-                    <a id='next' href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;page=<%= page %>"><span class='pagi'>&raquo;</span></a> 
+                    <a id='next' href="/?query=<%= query %>&amp;type=<%= tag %>&amp;by=<%= by %>&amp;dateRange=<%= dateRange %>&amp;page=<%= page %>"><span class='pagi'>&raquo;</span></a> 
                 <% }; %>
                     
                 <!-- <a class="next_page" rel="next" href="/search?p=2&amp;q=ajax&amp;type=Repositories">Next</a> -->

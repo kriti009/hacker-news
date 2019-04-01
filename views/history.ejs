@@ -1,1 +1,72 @@
-yo!!! this is the history page
+<% include ./partials/header.ejs %>
+<div class='container'>
+    <div class="navbar navbar-default">
+        <div class="container-fluid header">
+            <div class="navbar-header">
+                <% if(!currentUser){ %>
+                    <a class="navbar-brand" href="/">Search HackerNews</a>
+                <% }else{ %>
+                    <a class="navbar-brand" href="/profile"><%= currentUser.username %></a>
+                <% }; %>
+            </div>
+            <% if(!currentUser){ %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/login" class='user'>login</a></li>
+                    <li><a href="/signup" class='user'>signup</a></li>
+                </ul>
+            <% } else { %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class='user'><i class='fa fa-trash'></i></a></li>
+                    <li><a href="/logout" class='user'>logout</a></li>
+                </ul>
+            <% }; %>  
+        </div><!-- /.container-fluid -->
+        
+        <%if(!history[0]){%>
+            <div class='well' style="padding-top:100px; margin : 0 auto">
+                <h2>Opps!! No History</h2>
+                <!-- <i class="fa fa-ban"></i> -->
+            </div>
+        <%}else{%>
+            <div><h3 class='page-header' style="padding:5px ">Your Last Five Searches</h3></div>
+            <div>
+                <% history.forEach(function(hiss){ %>
+                    <div class='well'>
+                        <!-- <span class='' style='display: inline-block'>1</span>
+                        <div> -->
+                                Query String -><span style="font-size: 30px">"<%=hiss.query %>"</span><br>
+                        <span class="badge badge-primary"><%=hiss.tag%></span>
+                        <span class="badge badge-primary"><%=hiss.by%></span>
+                        <span class="badge badge-primary"><%=hiss.dateRange%></span>
+                        <% var time = timediff(hiss.time , today, time_format);%>
+                            <%if(time.years){%>
+                                <p class="pull-right"><%=time.years%> years ago</p>
+                            <%}else if(time.months){%>
+                                <p class="pull-right"><%=time.months%> months ago </p>
+                            <%}else if(time.weeks){%>
+                                <p class="pull-right"><%=time.weeks%> weeks ago </p>
+                                
+                            <%}else if(time.days){%>
+                                <p class="pull-right"><%=time.days%> days ago </p>
+                            <%}else if(time.hours){%>
+                                <p class="pull-right"><%=time.hours%> hours ago </p>
+                            <%}else if(time.minutes){%>
+                                <p class="pull-right"><%=time.minutes%> minutes ago </p>
+                            <%}else if(time.seconds){%>
+                                <p class="pull-right"><%=time.seconds%> seconds ago </p>
+                            <%}else{%>
+                                <p class="pull-right">a second ago </p>
+                            <%};%>
+                        <!-- </div> -->
+                        <!-- <p class="pull-right"><%=hiss.time%></p> -->
+                    </div>
+                    
+                <%});%>
+            </div>
+        <%};%>
+        
+        
+    </div>
+</div>
+
+<% include ./partials/footer.ejs %>

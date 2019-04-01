@@ -28,8 +28,10 @@ var time_format = {
 
 //requiring models
 var User = require('./models/user');
+var History = require('./models/history');
 
 var authRoutes = require('./routes/auth.js');
+// var middleware =/ require('./middleware');
 
 mongoose.connect("mongodb://localhost:27017/hacker_news",{ useNewUrlParser: true});
 
@@ -62,17 +64,55 @@ app.use(require("express-session")({
 
 app.use("/", authRoutes);
 
-app.get('/', function(req, res){
+app.get('/',isLoggedIn, function(req, res){
+    // if(req.query.query){
+    //     res.redirect('/save_history');
+    // };
+    var  date = new Date();
     var query = req.query.query || "";
     var tag = req.query.type || "story";
     var page = req.query.page || "0";
     var by = req.query.by || 'popularity';  
     var dateRange = req.query.dateRange || 'all';
-    var data ;
-    if(by== 'date'){
-        var url = 'https://hn.algolia.com/api/v1/search_by_date?query='+query+'&tags='+tag+'&numericFilters=&page='+page;    
+    var X ;
+    if(req.query.query){
+        // User.findOne({_id: req.user._id}, ) 
+        User.findOne({_id: req.user._id}, function(err, user){
+            if(user.history.length >= 5){
+                // console.log(user);
+                // console.log(user.history.length);
+                // console.log(user);
+                user.history.shift();
+                user.save();
+                // console.log(user);
+            };
+            user.history.push({query:query, tag:tag, by:by, dateRange:dateRange});
+            user.save();
+        });
+        
+    }
+    if(dateRange == 'all'){
+        X=0;
     }else{
-        var url = 'https://hn.algolia.com/api/v1/search?query='+query+'&tags='+tag+'&numericFilters=&page='+page;
+        by='date';
+        if(dateRange == 'last24h')
+            X=3600;
+        if(dateRange == 'pastWeek')
+            X=604800;
+        if(dateRange == 'pastMonth')
+            X=259200;
+        if(dateRange == 'pastYear')
+            X=31104000;
+    }
+    
+    // if(dateRange == 'pastWeek'){
+    //     X=0;
+    // };
+    
+    if(by== 'date'){
+        var url = 'https://hn.algolia.com/api/v1/search_by_date?query='+query+'&tags='+tag+'&numericFilters=created_at_i>'+X+'&page='+page;    
+    }else{
+        var url = 'https://hn.algolia.com/api/v1/search?query='+query+'&tags='+tag+'&numericFilters=created_at_i>'+X+'&page='+page;
     }
     request(url, function(err,  response, body){
         if(err)
@@ -88,7 +128,9 @@ app.get('/', function(req, res){
                     page:page, 
                     by:by, 
                     timediff: timediff,
-                    time_format : time_format
+                    time_format : time_format,
+                    dateRange: dateRange,
+                    x :X
                  });
             }     
         }
@@ -109,9 +151,26 @@ app.get('/comments/:id', function(req, res){
         }
     }) 
 });
+app.get('/history', function(req, res){
+    User.findOne({_id: req.user._id}, function(err, user){
+        if(err){
+            console.log(err);
+        }else{
+            var history = user.history;
+            res.render('history' ,{history: history, timediff:timediff, time_format:time_format});
+        }
+    });
+    
+});
 
-
-
+function isLoggedIn(req, res, next){
+    if( req.isAuthenticated() ){
+        return next();
+     }else{
+        req.flash("error", "You need to be logged in to do that")
+        res.redirect("/login");
+  };
+};
 app.get("*", function(req, res){
 	res.send("PAGE NOT FOUND!!");
 });
