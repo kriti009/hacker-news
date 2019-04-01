@@ -1,3 +1,0 @@
-db.histories.find().sort({'time': -1})
-db.histories.count()
-db.histories.drop()
